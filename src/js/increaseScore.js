@@ -1,3 +1,3 @@
-export const increaseScore = ()  => {
-    console.log('increase score')
-}
+export const increaseScore = () => {
+  console.log("increase score");
+};
