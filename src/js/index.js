@@ -1,7 +1,4 @@
-import { increaseScore } from './increaseScore';
-
-let score = 0;
-
+import { increaseScore } from './increaseScore'; 
 const ramClicker = document.querySelector('#ramClick')
 
 ramClicker.addEventListener('click', increaseScore)
