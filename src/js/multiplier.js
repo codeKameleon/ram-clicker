@@ -1,13 +1,11 @@
 import { multiplierBtn } from "./index";
-export let PointPerClick = 1;
+
 const scoreDisplay = document.querySelector(".score-display");
 
-export function multiplier(score) {
+export function multiplier(score, pointPerClick) {
   if (score >= 10) {
     score -= 10;
-    PointPerClick = 2;
-    multiplierBtn.innerText =
-      "50 points for " + PointPerClick + " points per click";
+    pointPerClick = 2;
     scoreDisplay.innerText = score;
   }
   if (score >= 50) {
