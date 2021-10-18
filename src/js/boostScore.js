@@ -2,10 +2,9 @@ const BONUS_DURATION = 30;
 let timer = 0;
 let idInterval;
 
-const  boostScore  = () => {
-    timer+=1
-
+const  boostScore  = (scorePerclick) => {
     if(timer >= BONUS_DURATION) {
+        scorePerClick = 1
         clearInterval(idInterval)
         timer = 0;
     }

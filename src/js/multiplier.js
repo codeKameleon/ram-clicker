@@ -1,20 +1,18 @@
-import { multiplierBtn } from "./index";
-
-const scoreDisplay = document.querySelector(".score-display");
-
-export function multiplier(score, pointPerClick) {
+export function multiplier(score, pointsPerClick, scoreDisplay) {
   if (score >= 10) {
     score -= 10;
-    pointPerClick = 2;
+    pointsPerClick = 2;
     scoreDisplay.innerText = score;
-  }
-  if (score >= 50) {
-    score -= 50;
-    pointPerClick = 4;
-    multiplierBtn.innerText =
-      "100 points for " + PointPerClick + " points per click";
-    scoreDisplay.innerText = score;
+    console.log("points per click", pointsPerClick);
+
+    // if (score >= 50) {
+    //   score -= 50;
+    //   pointPerClick = 4;
+    //   multiplierBtn.innerText =
+    //     "100 points for " + PointPerClick + " points per click";
+    //   scoreDisplay.innerText = score;
+    // }
   }
 
-  return score;
+  return [score, pointsPerClick];
 }
