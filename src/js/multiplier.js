@@ -10,7 +10,7 @@ export function multiplier(score, pointPerClick) {
   }
   if (score >= 50) {
     score -= 50;
-    PointPerClick = 4;
+    pointPerClick = 4;
     multiplierBtn.innerText =
       "100 points for " + PointPerClick + " points per click";
     scoreDisplay.innerText = score;

@@ -3,7 +3,7 @@ import { intervalTrigger } from "./boostScore";
 import { multiplier } from "./multiplier";
 
 let score = 0;
-export let pointPerClick = 1;
+let pointPerClick = 1;
 const multiplierX2 = document.querySelector("#x2");
 
 const ramClicker = document.querySelector("#ramClick");
@@ -23,4 +23,5 @@ export let multiplierBtn = document.querySelector(".multiplier");
 multiplierBtn.innerText = "10 points for 2 points per click";
 multiplierBtn.addEventListener("click", () => {
   score = multiplier(score);
+  pointPerClick = multiplier(pointPerClick);
 });
