@@ -1,0 +1,13 @@
+{
+  "name": "ram-clicker",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "rm -rf dist/* && cp src/images/ dist/images/ -R && parcel",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0"
+  }
+}
