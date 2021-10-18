@@ -1,8 +1,10 @@
-let score = 0;
+import { pointPerClick } from "./index";
 
-const scoreDisplay = document.querySelector('.score-display')
+const scoreDisplay = document.querySelector(".score-display");
 
-export const increaseScore = ()  => {
-    score +=1
-    scoreDisplay.textContent = score
-}
+export const increaseScore = (score) => {
+  score += pointPerClick;
+  scoreDisplay.textContent = score;
+
+  return score;
+};
