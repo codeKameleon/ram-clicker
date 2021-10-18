@@ -28,6 +28,12 @@ body {
 .actions {
     .ram-click {
         width: 200px;
+
+        &:hover {
+            @media screen and (min-width: 1200px) {
+                cursor: pointer;
+            }
+        }
     
         img {
             width: 100%;
