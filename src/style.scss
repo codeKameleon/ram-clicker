@@ -1,5 +1,36 @@
-.ram-click {
-    width: 200px;
-    height: 100px;
-    background-color: teal;
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.game {
+    display: flex;
+    min-height : 100vh;
+}
+
+.actions,
+.store {
+    padding: 1rem;
+    flex-basis: 50%;
+}
+
+.store {
+    background-color:#3d4145;
+    text-align: center;
+    color: #fff;
+}
+
+.actions {
+    .ram-click {
+        width: 200px;
+    
+        img {
+            width: 100%;
+        }
+    }
 }
