@@ -1,6 +1,14 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .ram-click {
   width: 200px;
-  height: 100px;
-  background-color: teal;
+}
+.ram-click img {
+  width: 100%;
 }
 /*# sourceMappingURL=index.fc9f8515.css.map */
