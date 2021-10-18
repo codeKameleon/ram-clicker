@@ -19,11 +19,6 @@ body {
     flex-basis: 50%;
 }
 
-.store {
-    background-color:#3d4145;
-    text-align: center;
-    color: #fff;
-}
 
 .actions {
     .ram-click {
@@ -37,6 +32,22 @@ body {
     
         img {
             width: 100%;
+        }
+    }
+}
+
+.store {
+    display: flex;
+    flex-direction: column;
+    background-color:#3d4145;
+    text-align: center;
+    color: #fff;
+
+    .upgrades {
+        button  {
+            @media screen and (min-width: 1200px) {
+                cursor: pointer;
+            }
         }
     }
 }
