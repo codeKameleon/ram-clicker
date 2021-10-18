@@ -1,8 +1,9 @@
+import { PointPerClick } from "./multiplier";
 
-const scoreDisplay = document.querySelector('.score-display')
+const scoreDisplay = document.querySelector(".score-display");
 
-export const increaseScore = (score)  => {
-    score +=1
-    scoreDisplay.textContent = score
-    return score
-}
+export const increaseScore = (score) => {
+  score += PointPerClick;
+  scoreDisplay.textContent = score;
+  return score;
+};
