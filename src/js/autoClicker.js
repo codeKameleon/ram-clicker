@@ -1,9 +1,12 @@
-const scoreDisplay = document.querySelector(".score-display");
-let intervalValue = 1000
+// const scoreDisplay = document.querySelector(".score-display");
+let intervalValue = 500
 const intervalDivid = 100
 
-function autoClickerValue(score) {
-    scoreDisplay.textContent++
+function autoClickerValue(score, scoreDisplay) {
+   score++
+   console.log(score);
+   scoreDisplay.innerText = score
+   return score
     // score++
 }
 
