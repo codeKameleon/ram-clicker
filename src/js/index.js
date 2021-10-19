@@ -16,6 +16,8 @@ const boostBtn = document.querySelector(".boost");
 const scoreDisplay = document.querySelector(".score-display");
 
 // EVENT LISTENERS
+
+/* Increase score */
 ramClicker.addEventListener("click", () => {
   score = increaseScore(score, pointsPerClick, scoreDisplay);
 
@@ -37,6 +39,7 @@ ramClicker.addEventListener("click", () => {
 });
 
 /*Mulitplier*/
+
 // x2
 multiplierX2Btn.addEventListener("click", () => {
   let multiplayerArray = multiplier(score, pointsPerClick, scoreDisplay);
@@ -50,6 +53,7 @@ multiplierX5Btn.addEventListener("click", () => {
   score = multiplayerArray[0];
   pointsPerClick = multiplayerArray[1];
 });
+
 // x10
 multiplierX10Btn.addEventListener("click", () => {
   let multiplayerArray = multiplier(score, pointsPerClick, scoreDisplay);
@@ -57,11 +61,11 @@ multiplierX10Btn.addEventListener("click", () => {
   pointsPerClick = multiplayerArray[1];
 });
 
-// Autoclicker
+/* Autoclicker */
 const autoClickerButton = document.querySelector(".auto-clicker");
 autoClickerButton.addEventListener("click", (e) => {
   score = autoClicker(score);
 });
 
-/*Boost*/
+/* Boost */
 boostBtn.addEventListener("click", intervalTrigger);
