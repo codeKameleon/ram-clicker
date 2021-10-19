@@ -63,8 +63,8 @@ multiplierX10Btn.addEventListener("click", () => {
 
 /* Autoclicker */
 const autoClickerButton = document.querySelector(".auto-clicker");
-autoClickerButton.addEventListener("click", (e) => {
-  score = autoClicker(score);
+autoClickerButton.addEventListener("click", () => {
+  score = autoClicker(score, scoreDisplay);
 });
 
 /* Boost */

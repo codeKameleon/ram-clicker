@@ -1,4 +1,4 @@
-const upgradesDiv = document.querySelector('.upgrades')
+const upgradesDiv = document.querySelector(".upgrades");
 const multiplierX10Div = document.querySelector(".multiplierX10-upgrade");
 const multiplierX5Div = document.querySelector(".multiplierX5-upgrade");
 const multiplierX2Div = document.querySelector(".multiplierX2-upgrade");
