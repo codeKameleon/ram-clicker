@@ -1,9 +1,11 @@
-const upgradesDiv = document.querySelector('.upgrades')
-const multiplierX10Div = document.querySelector(".multiplierX10-upgrade");
-const multiplierX5Div = document.querySelector(".multiplierX5-upgrade");
-const multiplierX2Div = document.querySelector(".multiplierX2-upgrade");
+import { 
+  upgradesDiv,
+  multiplierX2Div,
+  multiplierX5Div,
+  multiplierX10Div
+} from "./domElements"
 
-export function multiplier(score, pointsPerClick, scoreDisplay) {
+export const multiplier = (score, pointsPerClick, scoreDisplay) => {
   if (score >= 300) {
     score -= 300;
     pointsPerClick = 10;
