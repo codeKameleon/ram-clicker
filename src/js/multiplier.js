@@ -14,8 +14,8 @@ export function multiplier(score, pointsPerClick, scoreDisplay) {
     pointsPerClick = 5;
     scoreDisplay.innerText = score;
     upgradesDiv.removeChild(multiplierX5Div);
-  } else if (score >= 10) {
-    score -= 10;
+  } else if (score >= 20) {
+    score -= 20;
     pointsPerClick = 2;
     scoreDisplay.innerText = score;
     upgradesDiv.removeChild(multiplierX2Div);
