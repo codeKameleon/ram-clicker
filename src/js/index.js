@@ -1,3 +1,4 @@
+import { autoClicker } from "./autoClicker";
 import { increaseScore } from "./increaseScore";
 import { intervalTrigger } from "./boostScore";
 import { multiplier } from "./multiplier";
@@ -23,6 +24,12 @@ ramClicker.addEventListener("click", () => {
   }
 });
 
+// Autoclicker
+const autoClickerButton = document.querySelector(".auto-clicker");
+autoClickerButton.addEventListener("click", (e) => {
+  score = autoClicker(score);
+});
+
 /*Mulitplier*/
 multiplierX2Btn.addEventListener("click", () => {
   let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
@@ -32,6 +39,5 @@ multiplierX2Btn.addEventListener("click", () => {
   // pointsPerClick = multiplier(score, pointsPerClick, scoreDisplay);
 });
 
-/*Auto Clicker*/
 /*Boost*/
 boostBtn.addEventListener("click", intervalTrigger);
