@@ -32,8 +32,9 @@ autoClickerButton.addEventListener("click", e => {
 
 /*Mulitplier*/
 multiplierX2Btn.addEventListener("click", () => {
-  score = multiplier(score, pointsPerClick, scoreDisplay);
-  pointsPerClick = multiplier(score, multiplier[1], scoreDisplay)
+  let multiplayerArray = multiplier(score, pointsPerClick, scoreDisplay)
+  score = multiplayerArray[0]
+  pointsPerClick = multiplayerArray[0]
 }); 
 
 /*Boost*/ 
