@@ -1,7 +1,7 @@
 import { increaseScore } from "./increaseScore";
 import { multiplier } from "./multiplier";
 import { autoClicker } from "./autoClicker";
-import { intervalTrigger } from "./boostScore";
+import { boost } from "./boost";
 import { activateBonus } from "./activateBonus";
 import {
   ramClicker, 
@@ -32,7 +32,7 @@ EVENT LISTENERS
   ramClicker.addEventListener("click", () => {
     score = increaseScore(score, pointsPerClick, scoreDisplay);
 
-    if (score >= 1000) {
+    if (score >= 1) {
       activateBonus(boostBtn)
     }
 
@@ -85,4 +85,6 @@ autoClickerBtn.addEventListener("click", () => {
 });
 
 // Boost
-boostBtn.addEventListener("click", intervalTrigger);
+boostBtn.addEventListener("click", () => {
+  pointsPerClick = boost(pointsPerClick, scoreDisplay)
+});
