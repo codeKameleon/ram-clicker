@@ -11,6 +11,7 @@ let pointsPerClick = 1;
 const ramClicker = document.querySelector("#ramClick");
 const multiplierX2Btn = document.querySelector("#x2");
 const multiplierX5Btn = document.querySelector("#x5");
+const multiplierX10Btn = document.querySelector("#x10");
 const boostBtn = document.querySelector(".boost");
 const scoreDisplay = document.querySelector(".score-display");
 
@@ -28,6 +29,11 @@ ramClicker.addEventListener("click", () => {
     multiplierX5Btn.classList.remove("upgrade-inactive");
     multiplierX5Btn.classList.add("upgrade-active");
   }
+  if (score >= 300) {
+    multiplierX10Btn.removeAttribute("disabled");
+    multiplierX10Btn.classList.remove("upgrade-inactive");
+    multiplierX10Btn.classList.add("upgrade-active");
+  }
 });
 
 /*Mulitplier*/
@@ -40,6 +46,12 @@ multiplierX2Btn.addEventListener("click", () => {
 
 // x5
 multiplierX5Btn.addEventListener("click", () => {
+  let multiplayerArray = multiplier(score, pointsPerClick, scoreDisplay);
+  score = multiplayerArray[0];
+  pointsPerClick = multiplayerArray[1];
+});
+// x10
+multiplierX10Btn.addEventListener("click", () => {
   let multiplayerArray = multiplier(score, pointsPerClick, scoreDisplay);
   score = multiplayerArray[0];
   pointsPerClick = multiplayerArray[1];
