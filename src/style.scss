@@ -83,6 +83,10 @@ background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+
   transition: .3s;
 }
 
+.upgrade-cost {
+  margin-bottom: 0;
+}
+
 .upgrade-inactive {
   color: #a8a8a4;
   background-color: #dbdcd7;
