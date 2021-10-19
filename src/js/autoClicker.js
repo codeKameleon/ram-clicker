@@ -1,22 +1,10 @@
+import { upgradesDiv } from "./domElements";
+import { activateBonus } from "./activateBonus";
+
 const intervalValue = 1000
 const intervalDivid = 100
 
-const upgradesDiv = document.querySelector('.upgrades')
-const autoClickerDiv =  document.querySelector('.auto-clicker-upgrade')
-const multiplierX2Btn = document.querySelector("#x2")
-const multiplierX5Btn = document.querySelector("#x5")
-const multiplierX10Btn = document.querySelector("#x10")
-const autoClickerBtn = document.querySelector("#auto-clicker")
-const autoClickerOverkillBtn = document.querySelector("#auto-clicker-overkill")
-const boostBtn = document.querySelector("#boost")
-
-function activateBonus (bonusBtn) {
-    bonusBtn.removeAttribute("disabled")
-    bonusBtn.classList.remove('upgrade-inactive')
-    bonusBtn.classList.add("upgrade-active")
-}
-
-function autoClickerValue(score, scoreDisplay) {
+const  autoClickerValue = (score, scoreDisplay) => {
     score+=1
     scoreDisplay.innerText = score
 

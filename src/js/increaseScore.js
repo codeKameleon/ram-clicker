@@ -3,4 +3,4 @@ export const increaseScore = (score, pointsPerClick, scoreDisplay) => {
   scoreDisplay.textContent = score;
   
   return score;
-};
+}
