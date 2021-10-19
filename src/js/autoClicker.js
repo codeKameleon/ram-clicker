@@ -1,4 +1,4 @@
-import { upgradesDiv } from "./domElements";
+import { upgradesDiv, autoClickerDiv } from "./domElements";
 import { activateBonus } from "./activateBonus";
 
 const intervalValue = 1000
