@@ -1,7 +1,7 @@
 export function multiplier(score, pointsPerClick, scoreDisplay) {
   if (score >= 10) {
     score -= 10;
-    pointsPerClick = 2;
+    pointsPerClick *= 2;
     scoreDisplay.innerText = score;
     console.log("points per click", pointsPerClick);
 
