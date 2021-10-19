@@ -35,8 +35,6 @@ multiplierX2Btn.addEventListener("click", () => {
   let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
   score = multiplierArray[0];
   pointsPerClick = multiplierArray[1];
-  // score = multiplier(score, pointsPerClick, scoreDisplay);
-  // pointsPerClick = multiplier(score, pointsPerClick, scoreDisplay);
 });
 
 /*Boost*/
