@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Rationale&display=swap');
+
+
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Rationale', sans-serif;
   font-size: 16px;
 }
 
@@ -35,12 +39,37 @@ body {
   }
 }
 
+.upgrade {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #272423;
+}
+
+.upgrade-btn {
+  width: 80pxpx;
+  padding: 1rem;
+  border: none;
+  background-color: #fefefe;
+  color: #272423;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
 .upgrade-inactive {
-  background-color: gray;
+  color: #a8a8a4;
+  background-color: #dbdcd7;
 }
 
 .upgrade-active {
-  background-color: green;
+  color: #fefefe;
+  box-shadow: 1px 2px 0 0 #e7683b;
+  background-color: #edba84;
+}
+
+.upgrade-cost{
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 .store {
@@ -50,8 +79,18 @@ body {
   text-align: center;
   color: #fff;
 
+  .title {
+    margin-top: 0;
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    margin: 0;
+  }
+
   .upgrades {
-    button {
+    margin-top: .5rem;
+    .upgrade-active {
       @media screen and (min-width: 1200px) {
         cursor: pointer;
       }
