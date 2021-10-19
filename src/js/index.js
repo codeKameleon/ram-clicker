@@ -8,13 +8,13 @@ let score = 0;
 let pointsPerClick = 1;
 
 // DOM ELEMENTS
-const ramClicker = document.querySelector("#ramClick")
-const multiplierX2Btn = document.querySelector("#x2")
-const multiplierX5Btn = document.querySelector("#x5")
-const multiplierX10Btn = document.querySelector("#x10")
-const autoClickerBtn = document.querySelector("#auto-clicker")
-const boostBtn = document.querySelector(".boost")
-const scoreDisplay = document.querySelector(".score-display")
+const ramClicker = document.querySelector("#ramClick");
+const multiplierX2Btn = document.querySelector("#x2");
+const multiplierX5Btn = document.querySelector("#x5");
+const multiplierX10Btn = document.querySelector("#x10");
+const autoClickerBtn = document.querySelector("#auto-clicker");
+const boostBtn = document.querySelector(".boost");
+const scoreDisplay = document.querySelector(".score-display");
 
 // EVENT LISTENERS
 
@@ -22,8 +22,8 @@ const scoreDisplay = document.querySelector(".score-display")
 ramClicker.addEventListener("click", () => {
   score = increaseScore(score, pointsPerClick, scoreDisplay);
 
-  if(score >= 1) {
-    autoClickerBtn.removeAttribute("disabled")
+  if (score >= 1) {
+    autoClickerBtn.removeAttribute("disabled");
     autoClickerBtn.classList.remove("upgrade-inactive");
     autoClickerBtn.classList.add("upgrade-active");
   }
@@ -70,12 +70,7 @@ multiplierX10Btn.addEventListener("click", () => {
 });
 
 /* Autoclicker */
-<<<<<<< HEAD
-const autoClickerButton = document.querySelector(".auto-clicker");
-autoClickerButton.addEventListener("click", () => {
-=======
 autoClickerBtn.addEventListener("click", () => {
->>>>>>> 96e5a5de26016245af9102c49d9c4f16a1f2eeb6
   score = autoClicker(score, scoreDisplay);
 });
 
