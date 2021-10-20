@@ -40,7 +40,7 @@ EVENT LISTENERS
         activateBonus(autoClickerOverkillBtn)
     }
 
-    if (score >= 200) {
+    if (score >= 1) {
         activateBonus(autoClickerBtn)
     }
 
