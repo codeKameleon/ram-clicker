@@ -1,4 +1,13 @@
-import { upgradesDiv, autoClickerDiv } from "./domElements";
+import { 
+    upgradesDiv, 
+    autoClickerDiv,
+    boostBtn,
+    autoClickerOverkillBtn,
+    autoClickerBtn,
+    multiplierX10Btn,
+    multiplierX5Btn,
+    multiplierX2Btn
+ } from "./domElements";
 import { activateBonus } from "./activateBonus";
 
 const intervalValue = 1000
