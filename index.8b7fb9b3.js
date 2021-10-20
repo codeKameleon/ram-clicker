@@ -510,25 +510,57 @@ _domElements.multiplierX10Btn.addEventListener("click", ()=>{
 _domElements.autoClickerBtn.addEventListener("click", ()=>{
     _domElements.notification.textContent = '';
     _domElements.notification.textContent = 'Auto Clicker ON ! Relieves your wrist!';
-    setInterval(()=>{
-        score = _autoClicker.autoClicker(score, _domElements.scoreDisplay);
-        _activateBonus.activateBonus(score);
-    }, 1000);
+    if (score >= 200) {
+        score -= 200;
+        _domElements.scoreDisplay.textContent = score;
+        setInterval(()=>{
+            score = _autoClicker.autoClicker(score, _domElements.scoreDisplay);
+            _activateBonus.activateBonus(score);
+        }, 1000);
+    }
+});
+// Autoclicker Overkill
+_domElements.autoClickerOverkillBtn.addEventListener("click", ()=>{
+    _domElements.notification.textContent = '';
+    _domElements.notification.textContent = 'AC Overkill activated! It\'s rrrraining ram, hallelujah';
+    if (score >= 500) {
+        let OverkillTimer = 0;
+        score -= 500;
+        _domElements.scoreDisplay.textContent = score;
+        let autoClickerOverkillInterval = setInterval(()=>{
+            score = _increaseScore.increaseScore(score, pointsPerClick, _domElements.scoreDisplay);
+            _activateBonus.activateBonus(score);
+            OverkillTimer++;
+            if (OverkillTimer >= 300) {
+                clearInterval(autoClickerOverkillInterval);
+                OverkillTimer = 0;
+            }
+        }, 100);
+    }
 });
 // Boost
 _domElements.boostBtn.addEventListener("click", ()=>{
     _domElements.notification.textContent = '';
     _domElements.notification.textContent = 'Boost activated! Score status : on steroid';
-    pointsPerClick = _boost.boost(pointsPerClick);
-    let boostInterval = setInterval(()=>{
-        timer++;
-        if (timer >= BOOST_BONUS_DURATION) {
-            clearInterval(boostInterval);
-            timer = 0;
-            pointsPerClick = pointsPerClick / 200;
-        }
-    }, 1000);
+    if (score >= 1000) {
+        pointsPerClick = _boost.boost(pointsPerClick);
+        score -= 1000;
+        _domElements.scoreDisplay.textContent = score;
+        let boostInterval = setInterval(()=>{
+            timer++;
+            if (timer >= BOOST_BONUS_DURATION) {
+                clearInterval(boostInterval);
+                timer = 0;
+                pointsPerClick = pointsPerClick / 200;
+            }
+        }, 1000);
+    }
 });
+// Title score
+let title = document.querySelector("title");
+setInterval(()=>{
+    if (score >= 1) title.innerText = score + " Gb of ram" + " | " + "Ram Clicker";
+}, 7000);
 
 },{"./increaseScore":"dCUl7","./multiplier":"8NDwa","./autoClicker":"e02yS","./boost":"02ggI","./domElements":"iys9x","./activateBonus":"OOTwR"}],"dCUl7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -662,7 +694,7 @@ parcelHelpers.export(exports, "autoClicker", ()=>autoClicker
 );
 const autoClicker = (score, scoreDisplay)=>{
     score++;
-    scoreDisplay.innerText = score;
+    scoreDisplay.textContent = score;
     return score;
 };
 
@@ -688,10 +720,10 @@ const addStyleToBonusBtn = (bonusBtn)=>{
     bonusBtn.classList.add("upgrade-active");
 };
 const activateBonus = (score)=>{
-    if (score >= 1) addStyleToBonusBtn(_domElements.boostBtn);
+    if (score >= 1000) addStyleToBonusBtn(_domElements.boostBtn);
     if (score >= 500) addStyleToBonusBtn(_domElements.autoClickerOverkillBtn);
-    if (score >= 1) addStyleToBonusBtn(_domElements.autoClickerBtn);
-    if (score >= 100) addStyleToBonusBtn(_domElements.multiplierX10Btn);
+    if (score >= 300) addStyleToBonusBtn(_domElements.multiplierX10Btn);
+    if (score >= 200) addStyleToBonusBtn(_domElements.autoClickerBtn);
     if (score >= 50) addStyleToBonusBtn(_domElements.multiplierX5Btn);
     if (score >= 20) addStyleToBonusBtn(_domElements.multiplierX2Btn);
 };
