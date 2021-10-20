@@ -22,8 +22,8 @@ const  autoClickerValue = (score, scoreDisplay) => {
 
 export function autoClicker(score, scoreDisplay) {
     if (score >= 1) {
-
         score -=1
+        scoreDisplay.innerText = score
         upgradesDiv.removeChild(autoClickerDiv)
 
         setInterval(() => {
