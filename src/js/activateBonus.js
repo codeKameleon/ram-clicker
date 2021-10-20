@@ -14,7 +14,7 @@ import {
 }
 
 export const activateBonus = score => {
-    if (score >= 1000) {
+    if (score >= 1) {
         addStyleToBonusBtn(boostBtn)
     }
 

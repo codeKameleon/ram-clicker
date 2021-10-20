@@ -20,8 +20,9 @@ VARIABLES
 ----------------
 */
 let score = 0;
+let timer = 0;
 let pointsPerClick = 1;
-const buttons =  document.querySelectorAll('.upgrade-btn')
+const BOOST_BONUS_DURATION = 30;
 
 /*
 ----------------
@@ -67,5 +68,15 @@ EVENT LISTENERS
 
 // Boost
   boostBtn.addEventListener("click", () => {
-    pointsPerClick = boost(pointsPerClick, scoreDisplay)
+    pointsPerClick =  boost(pointsPerClick)
+
+    let boostInterval = setInterval(()=> {
+      timer++
+
+      if(timer >= BOOST_BONUS_DURATION) {
+        clearInterval(boostInterval)
+        timer = 0;
+        pointsPerClick = pointsPerClick / 200
+      }
+    },1000)
   });
