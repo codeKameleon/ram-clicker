@@ -3,7 +3,6 @@ import { multiplier } from "./multiplier";
 import { autoClicker } from "./autoClicker";
 import { boost } from "./boost";
 import { activateBonus } from "./activateBonus";
-
 import {
   ramClicker, 
   multiplierX2Btn, 
@@ -15,6 +14,7 @@ import {
   notification,
   scoreDisplay
 } from "./domElements"
+
 
 /*
 ----------------
@@ -70,28 +70,64 @@ EVENT LISTENERS
   autoClickerBtn.addEventListener("click", () => {
     notification.textContent = ''
     notification.textContent = 'Auto Clicker ON ! Relieves your wrist!'
-    setInterval(() => {
-      score = autoClicker(score, scoreDisplay)
-      activateBonus(score)
-    }, 1000)
+    if (score >= 200) {
+      score-=200  
+      scoreDisplay.textContent = score
+      setInterval(() => {
+        score = autoClicker(score, scoreDisplay)
+        activateBonus(score)
+      }, 1000)
+    }
   });
+
+// Autoclicker Overkill
+autoClickerOverkillBtn.addEventListener("click", () => {
+    notification.textContent = ''
+    notification.textContent = 'AC Overkill activated! It\'s rrrraining ram, hallelujah'
+  if (score >= 500) {
+    let OverkillTimer = 0
+    score-=500 
+    scoreDisplay.textContent = score
+    let autoClickerOverkillInterval = setInterval(() => {
+      score = increaseScore(score, pointsPerClick, scoreDisplay);
+      activateBonus(score)
+      OverkillTimer++
+      if (OverkillTimer >= 300) {
+        clearInterval(autoClickerOverkillInterval)
+        OverkillTimer = 0
+      }
+    }, 100)
+  }
+})
 
 // Boost
   boostBtn.addEventListener("click", () => {
     notification.textContent = ''
     notification.textContent = 'Boost activated! Score status : on steroid'
-    pointsPerClick =  boost(pointsPerClick)
 
-    let boostInterval = setInterval(()=> {
-      timer++
+    if (score >= 1000) {
+      pointsPerClick =  boost(pointsPerClick)
 
-      if(timer >= BOOST_BONUS_DURATION) {
-        clearInterval(boostInterval)
-        timer = 0;
-        pointsPerClick = pointsPerClick / 200
-      }
-    },1000)
+      score-=1000
+      scoreDisplay.textContent = score
+
+      let boostInterval = setInterval(()=> {
+        timer++
+        if(timer >= BOOST_BONUS_DURATION) {
+          clearInterval(boostInterval)
+          timer = 0;
+          pointsPerClick = pointsPerClick / 200
+        }
+      },1000)
+    }
   });
 
+  // Title score
 
+  let title = document.querySelector("title")
 
+  setInterval(() => {
+    if (score >= 1) {
+    title.innerText = score + " Gb of ram" + " | " + "Ram Clicker"
+    }
+  }, 7000)
