@@ -14,7 +14,7 @@ import {
 }
 
 export const activateBonus = score => {
-    if (score >= 1) {
+    if (score >= 1000) {
         addStyleToBonusBtn(boostBtn)
     }
 
@@ -22,12 +22,12 @@ export const activateBonus = score => {
         addStyleToBonusBtn(autoClickerOverkillBtn)
     }
 
-    if (score >= 1) {
-        addStyleToBonusBtn(autoClickerBtn)
+    if (score >= 300) {
+        addStyleToBonusBtn(multiplierX10Btn)
     }
 
-    if (score >= 100) {
-        addStyleToBonusBtn(multiplierX10Btn)
+    if (score >= 200) {
+        addStyleToBonusBtn(autoClickerBtn)
     }
 
     if (score >= 50) {

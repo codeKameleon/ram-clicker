@@ -1,5 +1,5 @@
-export function boost(pointsPerClick) {
-    pointsPerClick *=200
-    console.log(pointsPerClick);
+export const boost = (pointsPerClick) => {
+    pointsPerClick *= 200
+
     return pointsPerClick
 }
