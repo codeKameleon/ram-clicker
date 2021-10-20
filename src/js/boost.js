@@ -4,13 +4,15 @@ let idInterval;
 
 const  setTimerForBoost  = (pointsPerClick, scoreDisplay) => {
     timer++
-    pointsPerClick += 200
+    pointsPerClick *= 200
 
     if(timer >= BONUS_DURATION) {
         pointsPerClick = 1;
         clearInterval(idInterval)
         timer = 0;
     }
+
+    console.log('points per click', pointsPerClick)
 
     return pointsPerClick
 }

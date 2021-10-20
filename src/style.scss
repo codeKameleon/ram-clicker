@@ -104,6 +104,8 @@ background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+
 }
 
 .store {
+  height: 100vh;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   background-color: #3d4145;

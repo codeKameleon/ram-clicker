@@ -21,6 +21,7 @@ VARIABLES
 */
 let score = 0;
 let pointsPerClick = 1;
+const buttons =  document.querySelectorAll('.upgrade-btn')
 
 /*
 ----------------
@@ -31,30 +32,7 @@ EVENT LISTENERS
 // Increase score 
   ramClicker.addEventListener("click", () => {
     score = increaseScore(score, pointsPerClick, scoreDisplay);
-
-    if (score >= 1) {
-      activateBonus(boostBtn)
-    }
-
-    if (score >= 500) {
-        activateBonus(autoClickerOverkillBtn)
-    }
-
-    if (score >= 1) {
-        activateBonus(autoClickerBtn)
-    }
-
-    if (score >= 100) {
-        activateBonus(multiplierX10Btn)
-    }
-
-    if (score >= 50) {
-        activateBonus(multiplierX5Btn)
-    }
-
-    if (score >= 20) {
-        activateBonus(multiplierX2Btn)
-    }
+    activateBonus(score)
   });
 
 // Mulitplier
@@ -80,11 +58,14 @@ EVENT LISTENERS
   });
 
 // Autoclicker
-autoClickerBtn.addEventListener("click", () => {
-  score = autoClicker(score, scoreDisplay);
-});
+  autoClickerBtn.addEventListener("click", () => {
+    setInterval(() => {
+      score = autoClicker(score, scoreDisplay)
+      activateBonus(score)
+    }, 1000)
+  });
 
 // Boost
-boostBtn.addEventListener("click", () => {
-  pointsPerClick = boost(pointsPerClick, scoreDisplay)
-});
+  boostBtn.addEventListener("click", () => {
+    pointsPerClick = boost(pointsPerClick, scoreDisplay)
+  });
