@@ -1,42 +1,40 @@
-import {
-    ramClicker, 
+import { 
     multiplierX2Btn, 
     multiplierX5Btn,
     multiplierX10Btn,
     autoClickerBtn,
     autoClickerOverkillBtn,
     boostBtn,
-    scoreDisplay
   } from "./domElements"
-
-export const activateBonus = bonusBtn => {
+ 
+ const addStyleToBonusBtn = bonusBtn => {
     bonusBtn.removeAttribute("disabled")
     bonusBtn.classList.remove('upgrade-inactive')
     bonusBtn.classList.add("upgrade-active")
 }
 
-export function check(score) {
+export const activateBonus = score => {
     if (score >= 1) {
-        activateBonus(boostBtn)
-      }
-    
-      if (score >= 500) {
-          activateBonus(autoClickerOverkillBtn)
-      }
-    
-      if (score >= 1) {
-          activateBonus(autoClickerBtn)
-      }
-    
-      if (score >= 100) {
-          activateBonus(multiplierX10Btn)
-      }
-    
-      if (score >= 50) {
-          activateBonus(multiplierX5Btn)
-      }
-    
-      if (score >= 20) {
-          activateBonus(multiplierX2Btn)
+        addStyleToBonusBtn(boostBtn)
+    }
+
+    if (score >= 500) {
+        addStyleToBonusBtn(autoClickerOverkillBtn)
+    }
+
+    if (score >= 1) {
+        addStyleToBonusBtn(autoClickerBtn)
+    }
+
+    if (score >= 100) {
+        addStyleToBonusBtn(multiplierX10Btn)
+    }
+
+    if (score >= 50) {
+        addStyleToBonusBtn(multiplierX5Btn)
+    }
+
+    if (score >= 20) {
+        addStyleToBonusBtn(multiplierX2Btn)
+    }    
 }
-  }

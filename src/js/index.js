@@ -1,8 +1,8 @@
 import { increaseScore } from "./increaseScore";
 import { multiplier } from "./multiplier";
-import { autoClickerValue } from "./autoClicker";
-import { boost } from "./boost";
-import { activateBonus, check } from "./activateBonus";
+import { autoClicker } from "./autoClicker";
+import { boost} from "./boost";
+import { activateBonus} from "./activateBonus";
 import {
   ramClicker, 
   multiplierX2Btn, 
@@ -21,6 +21,8 @@ VARIABLES
 */
 let score = 0;
 let pointsPerClick = 1;
+const BONUS_DURATION = 5;
+let timer = 0;
 
 /*
 ----------------
@@ -31,8 +33,7 @@ EVENT LISTENERS
 // Increase score 
   ramClicker.addEventListener("click", () => {
     score = increaseScore(score, pointsPerClick, scoreDisplay);
-    check(score)
-    console.log(score);
+    activateBonus(score)
   });
 
 // Mulitplier
@@ -58,14 +59,23 @@ EVENT LISTENERS
   });
 
 // Autoclicker
-autoClickerBtn.addEventListener("click", () => {
-  setInterval(() => {
-    score = autoClickerValue(score, scoreDisplay)
-    check(score)
-}, 500)
-});
+  autoClickerBtn.addEventListener("click", () => {
+    setInterval(() => {
+      score = autoClicker(score, scoreDisplay)
+      activateBonus(score)
+    }, 1000)
+  });
 
 // Boost
-boostBtn.addEventListener("click", () => {
-  pointsPerClick = boost(pointsPerClick, scoreDisplay)
-});
+  boostBtn.addEventListener("click", () => {
+    pointsPerClick =  boost(pointsPerClick)
+    let boostInterval = setInterval(() => {
+      timer++
+        if (timer >= BONUS_DURATION) {
+          clearInterval(boostInterval)
+          pointsPerClick = pointsPerClick/200
+          console.log(pointsPerClick);
+          timer = 0
+        }
+    }, 1000)
+  });
