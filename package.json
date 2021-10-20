@@ -13,5 +13,18 @@
     "@parcel/transformer-sass": "^2.0.0",
     "gh-pages": "^3.2.3",
     "parcel": "^2.0.0"
-  }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeKameleon/ram-clicker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeKameleon/ram-clicker/issues"
+  },
+  "description": ""
 }

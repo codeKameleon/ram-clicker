@@ -1,6 +1,6 @@
 export const autoClicker =(score, scoreDisplay) => {
     score++
-    scoreDisplay.innerText = score
+    scoreDisplay.textContent = score;
 
-    return score;
+    return score
 }
