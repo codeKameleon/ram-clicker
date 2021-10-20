@@ -1,8 +1,8 @@
 import { increaseScore } from "./increaseScore";
 import { multiplier } from "./multiplier";
 import { autoClicker } from "./autoClicker";
-import { boost} from "./boost";
-import { activateBonus} from "./activateBonus";
+import { boost } from "./boost";
+import { activateBonus } from "./activateBonus";
 import {
   ramClicker, 
   multiplierX2Btn, 
@@ -11,6 +11,7 @@ import {
   autoClickerBtn,
   autoClickerOverkillBtn,
   boostBtn,
+  notification,
   scoreDisplay
 } from "./domElements"
 
@@ -40,13 +41,17 @@ EVENT LISTENERS
 // Mulitplier
   // x2
   multiplierX2Btn.addEventListener("click", () => {
+    notification.textContent = 'Your score is now inscreade by 2 !'
     let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
+    
   });
 
   // x5
   multiplierX5Btn.addEventListener("click", () => {
+    notification.textContent = ''
+    notification.textContent = 'Your score is now inscreade by 5!'  
     let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
@@ -54,6 +59,8 @@ EVENT LISTENERS
 
   // x10
   multiplierX10Btn.addEventListener("click", () => {
+    notification.textContent = ''
+    notification.textContent = 'Your score is now inscreade by 10!' 
     let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
@@ -61,6 +68,8 @@ EVENT LISTENERS
 
 // Autoclicker
   autoClickerBtn.addEventListener("click", () => {
+    notification.textContent = ''
+    notification.textContent = 'Auto Clicker ON ! Relieves your wrist!'
     if (score >= 200) {
       score-=200  
       scoreDisplay.textContent = score
@@ -69,11 +78,12 @@ EVENT LISTENERS
         activateBonus(score)
       }, 1000)
     }
-
   });
 
 // Autoclicker Overkill
 autoClickerOverkillBtn.addEventListener("click", () => {
+    notification.textContent = ''
+    notification.textContent = 'AC Overkill activated! It\'s rrrraining ram, hallelujah'
   if (score >= 500) {
     let OverkillTimer = 0
     score-=500 
@@ -92,6 +102,9 @@ autoClickerOverkillBtn.addEventListener("click", () => {
 
 // Boost
   boostBtn.addEventListener("click", () => {
+    notification.textContent = ''
+    notification.textContent = 'Boost activated! Score status : on steroid'
+
     if (score >= 1000) {
       pointsPerClick =  boost(pointsPerClick)
 
