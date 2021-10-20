@@ -1,3 +1,6 @@
+export const game =  document.querySelector('.game')
+export const notification = document.querySelector('.notification')
+
 export const scoreDisplay = document.querySelector('.score-display')
 export const ramClicker = document.querySelector("#ramClick")
 
