@@ -1,8 +1,8 @@
 import { increaseScore } from "./increaseScore";
 import { multiplier } from "./multiplier";
-import { autoClicker } from "./autoClicker";
+import { autoClickerValue } from "./autoClicker";
 import { boost } from "./boost";
-import { activateBonus } from "./activateBonus";
+import { activateBonus, check } from "./activateBonus";
 import {
   ramClicker, 
   multiplierX2Btn, 
@@ -31,30 +31,8 @@ EVENT LISTENERS
 // Increase score 
   ramClicker.addEventListener("click", () => {
     score = increaseScore(score, pointsPerClick, scoreDisplay);
-
-    if (score >= 1) {
-      activateBonus(boostBtn)
-    }
-
-    if (score >= 500) {
-        activateBonus(autoClickerOverkillBtn)
-    }
-
-    if (score >= 1) {
-        activateBonus(autoClickerBtn)
-    }
-
-    if (score >= 100) {
-        activateBonus(multiplierX10Btn)
-    }
-
-    if (score >= 50) {
-        activateBonus(multiplierX5Btn)
-    }
-
-    if (score >= 20) {
-        activateBonus(multiplierX2Btn)
-    }
+    check(score)
+    console.log(score);
   });
 
 // Mulitplier
@@ -81,7 +59,10 @@ EVENT LISTENERS
 
 // Autoclicker
 autoClickerBtn.addEventListener("click", () => {
-  score = autoClicker(score, scoreDisplay);
+  setInterval(() => {
+    score = autoClickerValue(score, scoreDisplay)
+    check(score)
+}, 500)
 });
 
 // Boost
