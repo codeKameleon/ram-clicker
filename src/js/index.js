@@ -20,6 +20,9 @@ import {
 VARIABLES
 ----------------
 */
+if (scoreDisplay.textContent >= 1) {
+  score = scoreDisplay.textContent
+}
 let score = 0;
 let timer = 0;
 let pointsPerClick = 1;
@@ -118,3 +121,13 @@ autoClickerOverkillBtn.addEventListener("click", () => {
     title.innerText = score + " Gb of ram" + " | " + "Ram Clicker"
     }
   }, 7000)
+
+setInterval(() => {
+  window.localStorage.setItem("score", score)
+}, 1000)
+
+let storage = window.localStorage.getItem("score")
+document.body.onload = function() {
+  console.log(storage);
+  scoreDisplay.textContent = storage
+}
