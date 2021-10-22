@@ -132,10 +132,10 @@ body {
 }
 
 .notification {
-  position: absolute;
+  position: fixed;
   top: -60px;
   left: 0;
-  width: 100%;
+  width: 50%;
   height: 60px;
   display: flex;
   align-items: center;
@@ -144,7 +144,6 @@ body {
   color: #ffff;
   transition: transform .3s;
 }
-
 
 .show {
   transform: translateY(60px)
