@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.scss">
+    <link rel="icon" href="images/ram.png">
     <title>Ram Clicker</title>
 </head>
 <body>
     <main class="game">
         <section class="actions">
-            <h1 class="title">Score</h1>
+            <div class="notification"></div>
+            <h1 class="title">Gb of ram</h1>
             <div class="score-display">
                 0
             </div>
@@ -41,7 +43,7 @@
                 <div class=" upgrade multiplierX10-upgrade">
                     <button disabled class="upgrade-btn upgrade-inactive" id="x10">x10</button>
                     <p class="upgrade-description">Multiply your points per click by 10</p>
-                    <p class="upgrade-cost">Cost : 100 ram</p>
+                    <p class="upgrade-cost">Cost : 300 ram</p>
                 </div>
 
                 <div class="upgrade auto-clicker-upgrade">
@@ -52,13 +54,15 @@
 
                 <div class="upgrade auto-clicker-upgrade">
                     <button disabled class="upgrade-btn upgrade-inactive auto-clicker" id="auto-clicker-overkill">Auto clicker overkill</button>
-                    <p class="upgrade-description">Auto clicker Overkill : 2 ram per second</p>
+                    <p class="upgrade-description">Auto clicker Overkill : click every 0.1 second for 30 second</p>
+                    <p>Cooldown : 5 min</p>
                     <p class="upgrade-cost">Cost : 500 ram</p>
                 </div>
 
                 <div class="upgrade boost-upgrade">
                     <button disabled class="upgrade-btn upgrade-inactive boost" id="boost">Boost</button>
-                    <p class="upgrade-description">Increase your score per click by 200%</p>
+                    <p class="upgrade-description">Increase your score per click by 200% for 30 second</p>
+                    <p>Cooldown : 10 min</p>
                     <p class="upgrade-cost">Cost : 1000 ram</p>
                 </div>
             </div>

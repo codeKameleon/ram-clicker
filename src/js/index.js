@@ -11,6 +11,7 @@ import {
   autoClickerBtn,
   autoClickerOverkillBtn,
   boostBtn,
+  notification,
   scoreDisplay,
 } from "./domElements";
 
@@ -20,7 +21,9 @@ VARIABLES
 ----------------
 */
 let score = 0;
+let timer = 0;
 let pointsPerClick = 1;
+const BOOST_BONUS_DURATION = 30;
 
 /*
 ----------------
@@ -31,35 +34,13 @@ EVENT LISTENERS
 // Increase score
 ramClicker.addEventListener("click", () => {
   score = increaseScore(score, pointsPerClick, scoreDisplay);
-
-  if (score >= 1) {
-    activateBonus(boostBtn);
-  }
-
-  if (score >= 500) {
-    activateBonus(autoClickerOverkillBtn);
-  }
-
-  if (score >= 200) {
-    activateBonus(autoClickerBtn);
-  }
-
-  if (score >= 100) {
-    activateBonus(multiplierX10Btn);
-  }
-
-  if (score >= 50) {
-    activateBonus(multiplierX5Btn);
-  }
-
-  if (score >= 20) {
-    activateBonus(multiplierX2Btn);
-  }
+  activateBonus(score);
 });
 
 // Mulitplier
 // x2
 multiplierX2Btn.addEventListener("click", () => {
+  notification.textContent = "Your score is now inscreade by 2 !";
   let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
   score = multiplierArray[0];
   pointsPerClick = multiplierArray[1];
@@ -67,6 +48,8 @@ multiplierX2Btn.addEventListener("click", () => {
 
 // x5
 multiplierX5Btn.addEventListener("click", () => {
+  notification.textContent = "";
+  notification.textContent = "Your score is now inscreade by 5!";
   let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
   score = multiplierArray[0];
   pointsPerClick = multiplierArray[1];
@@ -74,6 +57,8 @@ multiplierX5Btn.addEventListener("click", () => {
 
 // x10
 multiplierX10Btn.addEventListener("click", () => {
+  notification.textContent = "";
+  notification.textContent = "Your score is now inscreade by 10!";
   let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
   score = multiplierArray[0];
   pointsPerClick = multiplierArray[1];
@@ -81,10 +66,67 @@ multiplierX10Btn.addEventListener("click", () => {
 
 // Autoclicker
 autoClickerBtn.addEventListener("click", () => {
-  score = autoClicker(score, scoreDisplay);
+  notification.textContent = "";
+  notification.textContent = "Auto Clicker ON ! Relieves your wrist!";
+  if (score >= 200) {
+    score -= 200;
+    scoreDisplay.textContent = score;
+    setInterval(() => {
+      score = autoClicker(score, scoreDisplay);
+      activateBonus(score);
+    }, 1000);
+  }
+});
+
+// Autoclicker Overkill
+autoClickerOverkillBtn.addEventListener("click", () => {
+  notification.textContent = "";
+  notification.textContent =
+    "AC Overkill activated! It's rrrraining ram, hallelujah";
+  if (score >= 500) {
+    let OverkillTimer = 0;
+    score -= 500;
+    scoreDisplay.textContent = score;
+    let autoClickerOverkillInterval = setInterval(() => {
+      score = increaseScore(score, pointsPerClick, scoreDisplay);
+      activateBonus(score);
+      OverkillTimer++;
+      if (OverkillTimer >= 300) {
+        clearInterval(autoClickerOverkillInterval);
+        OverkillTimer = 0;
+      }
+    }, 100);
+  }
 });
 
 // Boost
 boostBtn.addEventListener("click", () => {
-  pointsPerClick = boost(pointsPerClick, scoreDisplay);
+  notification.textContent = "";
+  notification.textContent = "Boost activated! Score status : on steroid";
+
+  if (score >= 1000) {
+    pointsPerClick = boost(pointsPerClick);
+
+    score -= 1000;
+    scoreDisplay.textContent = score;
+
+    let boostInterval = setInterval(() => {
+      timer++;
+      if (timer >= BOOST_BONUS_DURATION) {
+        clearInterval(boostInterval);
+        timer = 0;
+        pointsPerClick = pointsPerClick / 200;
+      }
+    }, 1000);
+  }
 });
+
+// Title score
+
+let title = document.querySelector("title");
+
+setInterval(() => {
+  if (score >= 1) {
+    title.innerText = score + " Gb of ram" + " | " + "Ram Clicker";
+  }
+}, 7000);
