@@ -15,6 +15,55 @@ import {
   scoreDisplay,
 } from "./domElements";
 
+import { shop } from "./shopList";
+
+let ram = 0;
+let ramPerSecond = 0;
+let button;
+
+const ramLocation = document.querySelector(".score-display");
+ramLocation.innerText = ram;
+
+let i = 0;
+
+export const multiplierX2 = (score, pointsPerClick, scoreDisplay) => {
+  score -= 20 * level;
+  pointsPerClick = 2 * level;
+  scoreDisplay.innerText = score;
+
+  level++;
+
+  return [score, pointsPerClick];
+};
+
+for (const upgrade of shop) {
+  const shopLocation = document.querySelector(".upgrades");
+
+  const div = document.createElement("div");
+
+  button = document.createElement("button");
+  button.innerText = shop[i].name;
+  button.className = "upgradeButton";
+  button.addEventListener("click", shop[i].effect);
+
+  div.appendChild(button);
+
+  const description = document.createElement("p");
+  description.innerText = shop[i].description;
+  div.appendChild(description);
+
+  const cost = document.createElement("p");
+  cost.innerText = "Cost : " + shop[i].cost + " ram";
+  div.appendChild(cost);
+
+  ramPerSecond += shop[i].ramPS;
+
+  shopLocation.appendChild(div);
+  i++;
+}
+
+const upgradeButton = document.querySelector(".upgradeButton")[0];
+
 /*
 ----------------
 VARIABLES
@@ -35,12 +84,12 @@ EVENT LISTENERS
 // Increase score
 ramClicker.addEventListener("click", () => {
   score = increaseScore(score, pointsPerClick, scoreDisplay);
-  activateBonus(score);
 });
 
 // Mulitplier
 // x2
-multiplierX2Btn.addEventListener("click", () => {
+
+button.addEventListener("click", () => {
   notification.classList.add("show");
   notification.textContent = "Your score is now increased by 2 !";
   setTimeout(() => {
@@ -51,117 +100,121 @@ multiplierX2Btn.addEventListener("click", () => {
   pointsPerClick = multiplierArray[1];
 });
 
-// x5
-multiplierX5Btn.addEventListener("click", () => {
-  notification.classList.add("show");
-  notification.textContent = "";
-  notification.textContent = "Your score is now increased by 5!";
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 3000);
-  let multiplierArray = multiplierX5(score, pointsPerClick, scoreDisplay);
-  score = multiplierArray[0];
-  pointsPerClick = multiplierArray[1];
-  console.log(score);
-});
+// // x5
+// multiplierX5Btn.addEventListener("click", () => {
+//   notification.classList.add("show");
+//   notification.textContent = "";
+//   notification.textContent = "Your score is now increased by 5!";
+//   setTimeout(() => {
+//     notification.classList.remove("show");
+//   }, 3000);
+//   let multiplierArray = multiplierX5(score, pointsPerClick, scoreDisplay);
+//   score = multiplierArray[0];
+//   pointsPerClick = multiplierArray[1];
+//   console.log(score);
+// });
 
-// x10
-multiplierX10Btn.addEventListener("click", () => {
-  notification.classList.add("show");
-  notification.textContent = "";
-  notification.textContent = "Your score is now increased by 10!";
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 3000);
-  let multiplierArray = multiplierX10(score, pointsPerClick, scoreDisplay);
-  score = multiplierArray[0];
-  pointsPerClick = multiplierArray[1];
-});
+// // x10
+// multiplierX10Btn.addEventListener("click", () => {
+//   notification.classList.add("show");
+//   notification.textContent = "";
+//   notification.textContent = "Your score is now increased by 10!";
+//   setTimeout(() => {
+//     notification.classList.remove("show");
+//   }, 3000);
+//   let multiplierArray = multiplierX10(score, pointsPerClick, scoreDisplay);
+//   score = multiplierArray[0];
+//   pointsPerClick = multiplierArray[1];
+// });
 
-// Autoclicker
-autoClickerBtn.addEventListener("click", () => {
-  notification.classList.add("show");
-  notification.textContent = "";
-  notification.textContent = "Auto Clicker ON ! Relieves your wrist!";
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 2000);
-  if (score >= 200) {
-    score -= 200;
-    scoreDisplay.textContent = score;
-    setInterval(() => {
-      score = autoClicker(score, scoreDisplay);
-      activateBonus(score);
-    }, 1000);
-  }
-});
+// // Autoclicker
+// autoClickerBtn.addEventListener("click", () => {
+//   notification.classList.add("show");
+//   notification.textContent = "";
+//   notification.textContent = "Auto Clicker ON ! Relieves your wrist!";
+//   setTimeout(() => {
+//     notification.classList.remove("show");
+//   }, 2000);
+//   if (score >= 200) {
+//     score -= 200;
+//     scoreDisplay.textContent = score;
+//     setInterval(() => {
+//       score = autoClicker(score, scoreDisplay);
+//       activateBonus(score);
+//     }, 1000);
+//   }
+// });
 
-// Autoclicker Overkill
-autoClickerOverkillBtn.addEventListener("click", () => {
-  notification.classList.add("show");
-  notification.textContent = "";
-  notification.textContent =
-    "AC Overkill activated! It's rrrraining ram, hallelujah";
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 2000);
-  if (score >= 500) {
-    let OverkillTimer = 0;
-    score -= 500;
-    scoreDisplay.textContent = score;
-    let autoClickerOverkillInterval = setInterval(() => {
-      score = increaseScore(score, pointsPerClick, scoreDisplay);
-      activateBonus(score);
-      OverkillTimer++;
-      if (OverkillTimer >= 300) {
-        clearInterval(autoClickerOverkillInterval);
-        OverkillTimer = 0;
-      }
-    }, 100);
-  }
-});
+// // Autoclicker Overkill
+// autoClickerOverkillBtn.addEventListener("click", () => {
+//   notification.classList.add("show");
+//   notification.textContent = "";
+//   notification.textContent =
+//     "AC Overkill activated! It's rrrraining ram, hallelujah";
+//   setTimeout(() => {
+//     notification.classList.remove("show");
+//   }, 2000);
+//   if (score >= 500) {
+//     let OverkillTimer = 0;
+//     score -= 500;
+//     scoreDisplay.textContent = score;
+//     let autoClickerOverkillInterval = setInterval(() => {
+//       score = increaseScore(score, pointsPerClick, scoreDisplay);
+//       activateBonus(score);
+//       OverkillTimer++;
+//       if (OverkillTimer >= 300) {
+//         clearInterval(autoClickerOverkillInterval);
+//         OverkillTimer = 0;
+//       }
+//     }, 100);
+//   }
+// });
 
-// Boost
-boostBtn.addEventListener("click", () => {
-  notification.classList.add("show");
-  notification.textContent = "";
-  notification.textContent = "Boost activated! Score status : on steroid";
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 2000);
+// // Boost
+// boostBtn.addEventListener("click", () => {
+//   notification.classList.add("show");
+//   notification.textContent = "";
+//   notification.textContent = "Boost activated! Score status : on steroid";
+//   setTimeout(() => {
+//     notification.classList.remove("show");
+//   }, 2000);
 
-  if (score >= 1000) {
-    pointsPerClick = boost(pointsPerClick);
+//   if (score >= 1000) {
+//     pointsPerClick = boost(pointsPerClick);
 
-    score -= 1000;
-    scoreDisplay.textContent = score;
+//     score -= 1000;
+//     scoreDisplay.textContent = score;
 
-    let boostInterval = setInterval(() => {
-      timer++;
-      if (timer >= BOOST_BONUS_DURATION) {
-        clearInterval(boostInterval);
-        timer = 0;
-        pointsPerClick = pointsPerClick / 200;
-      }
-    }, 1000);
-  }
-});
-
-// Title score
+//     let boostInterval = setInterval(() => {
+//       timer++;
+//       if (timer >= BOOST_BONUS_DURATION) {
+//         clearInterval(boostInterval);
+//         timer = 0;
+//         pointsPerClick = pointsPerClick / 200;
+//       }
+//     }, 1000);
+//   }
+// });
 
 // Title score
 
-let title = document.querySelector("title");
+// Title score
 
-setInterval(() => {
-  if (score >= 1) {
-    title.innerText = score + " Gb of ram" + " | " + "Ram Clicker";
-  }
-}, 7000);
+// let title = document.querySelector("title");
 
-let storage = window.localStorage.getItem("score");
-document.body.onload = function () {
-  score = Number(storage);
-  scoreDisplay.innerText = score;
-  activateBonus();
-};
+// setInterval(() => {
+//   if (score >= 1) {
+//     title.innerText = score + " Gb of ram" + " | " + "Ram Clicker";
+//   }
+// }, 7000);
+
+// setInterval(() => {
+//   window.localStorage.setItem("score", score);
+// }, 1000);
+
+// let storage = window.localStorage.getItem("score");
+// document.body.onload = function () {
+//   score = Number(storage);
+//   scoreDisplay.innerText = score;
+//   activateBonus();
+// };

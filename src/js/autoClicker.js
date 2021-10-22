@@ -1,6 +1,6 @@
-export const autoClicker = (score, scoreDisplay) => {
-  score++;
-  scoreDisplay.textContent = score;
+// export const autoClicker = (score, scoreDisplay) => {
+//   score++;
+//   scoreDisplay.textContent = score;
 
-  return score;
-};
+//   return score;
+// };
