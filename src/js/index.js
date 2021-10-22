@@ -21,6 +21,13 @@ VARIABLES
 ----------------
 */
 let score = 0;
+if (scoreDisplay.textContent >= 1) {
+  score = score + scoreDisplay.textContent;
+  console.log(score);
+  return score;
+} else {
+  score = 0;
+}
 let timer = 0;
 let pointsPerClick = 1;
 const BOOST_BONUS_DURATION = 30;
@@ -130,3 +137,13 @@ setInterval(() => {
     title.innerText = score + " Gb of ram" + " | " + "Ram Clicker";
   }
 }, 7000);
+
+setInterval(() => {
+  window.localStorage.setItem("score", score);
+}, 1000);
+
+let storage = window.localStorage.getItem("score");
+document.body.onload = function () {
+  score = Number(storage);
+  scoreDisplay.innerText = score;
+};
