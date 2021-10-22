@@ -48,7 +48,7 @@ ramClicker.addEventListener("click", () => {
 // x2
 multiplierX2Btn.addEventListener("click", () => {
   notification.textContent = "Your score is now inscreade by 2 !";
-  let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+  let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay, e);
   score = multiplierArray[0];
   pointsPerClick = multiplierArray[1];
 });
@@ -57,7 +57,7 @@ multiplierX2Btn.addEventListener("click", () => {
 multiplierX5Btn.addEventListener("click", () => {
   notification.textContent = "";
   notification.textContent = "Your score is now inscreade by 5!";
-  let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+  let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay, e);
   score = multiplierArray[0];
   pointsPerClick = multiplierArray[1];
 });
@@ -66,7 +66,7 @@ multiplierX5Btn.addEventListener("click", () => {
 multiplierX10Btn.addEventListener("click", () => {
   notification.textContent = "";
   notification.textContent = "Your score is now inscreade by 10!";
-  let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+  let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay, e);
   score = multiplierArray[0];
   pointsPerClick = multiplierArray[1];
 });
