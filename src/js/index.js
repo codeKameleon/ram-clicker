@@ -1,152 +1,41 @@
-import { increaseScore } from "./increaseScore";
-import { multiplier } from "./multiplier";
-import { autoClicker } from "./autoClicker";
-import { boost } from "./boost";
-import { activateBonus } from "./activateBonus";
-import {
-  ramClicker, 
-  multiplierX2Btn, 
-  multiplierX5Btn,
-  multiplierX10Btn,
-  autoClickerBtn,
-  autoClickerOverkillBtn,
-  boostBtn,
-  notification,
-  scoreDisplay
-} from "./domElements"
+import { shop } from "./shopList";
 
+let ram = 0
+let ramPerSecond = 0
 
-/*
-----------------
-VARIABLES
-----------------
-*/
-let score = 0;
-if (scoreDisplay.textContent >= 1) {
-  score = score + scoreDisplay.textContent
-  console.log(score);
-  return score
-}
-else {
-  score = 0;
+const ramLocation = document.querySelector(".score-display")
+ramLocation.innerText = ram
 
-}
-let timer = 0;
-let pointsPerClick = 1;
-const BOOST_BONUS_DURATION = 30;
+let i = 0
 
-/*
-----------------
-EVENT LISTENERS
-----------------
-*/
+for (const upgrade of shop) {
+  console.log(i);
+  const shopLocation = document.querySelector(".upgrades")
 
-// Increase score 
-  ramClicker.addEventListener("click", () => {
-    score = increaseScore(score, pointsPerClick, scoreDisplay);
-    activateBonus(score)
-  });
+  const div = document.createElement("div")
 
-// Mulitplier
-  // x2
-  multiplierX2Btn.addEventListener("click", () => {
-    notification.textContent = 'Your score is now inscreade by 2 !'
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
-    score = multiplierArray[0];
-    pointsPerClick = multiplierArray[1];
-    
-  });
-
-  // x5
-  multiplierX5Btn.addEventListener("click", () => {
-    notification.textContent = ''
-    notification.textContent = 'Your score is now inscreade by 5!'  
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
-    score = multiplierArray[0];
-    pointsPerClick = multiplierArray[1];
-  });
-
-  // x10
-  multiplierX10Btn.addEventListener("click", () => {
-    notification.textContent = ''
-    notification.textContent = 'Your score is now inscreade by 10!' 
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
-    score = multiplierArray[0];
-    pointsPerClick = multiplierArray[1];
-  });
-
-// Autoclicker
-  autoClickerBtn.addEventListener("click", () => {
-    notification.textContent = ''
-    notification.textContent = 'Auto Clicker ON ! Relieves your wrist!'
-    if (score >= 200) {
-      score-=200  
-      scoreDisplay.textContent = score
-      setInterval(() => {
-        score = autoClicker(score, scoreDisplay)
-        activateBonus(score)
-      }, 1000)
-    }
-  });
-
-// Autoclicker Overkill
-autoClickerOverkillBtn.addEventListener("click", () => {
-    notification.textContent = ''
-    notification.textContent = 'AC Overkill activated! It\'s rrrraining ram, hallelujah'
-  if (score >= 500) {
-    let OverkillTimer = 0
-    score-=500 
-    scoreDisplay.textContent = score
-    let autoClickerOverkillInterval = setInterval(() => {
-      score = increaseScore(score, pointsPerClick, scoreDisplay);
-      activateBonus(score)
-      OverkillTimer++
-      if (OverkillTimer >= 300) {
-        clearInterval(autoClickerOverkillInterval)
-        OverkillTimer = 0
+  const button = document.createElement("button")
+  button.innerText = shop[i].name
+  button.className = "upgradeButton"
+    button.addEventListener("click", e => {
+      if (ram >= shop[i].cost) {
+        ram -= shop[i].cost
       }
-    }, 100)
-  }
-})
+    })
+  div.appendChild(button)
 
-// Boost
-  boostBtn.addEventListener("click", () => {
-    notification.textContent = ''
-    notification.textContent = 'Boost activated! Score status : on steroid'
+  const description = document.createElement("p")
+  description.innerText = shop[i].description
+  div.appendChild(description)
 
-    if (score >= 1000) {
-      pointsPerClick =  boost(pointsPerClick)
-
-      score-=1000
-      scoreDisplay.textContent = score
-
-      let boostInterval = setInterval(()=> {
-        timer++
-        if(timer >= BOOST_BONUS_DURATION) {
-          clearInterval(boostInterval)
-          timer = 0;
-          pointsPerClick = pointsPerClick / 200
-        }
-      },1000)
-    }
-  });
-
-  // Title score
-
-  let title = document.querySelector("title")
-
-  setInterval(() => {
-    if (score >= 1) {
-    title.innerText = score + " Gb of ram" + " | " + "Ram Clicker"
-    }
-  }, 7000)
-
-setInterval(() => {
-  window.localStorage.setItem("score", score)
-}, 1000)
-
-let storage = window.localStorage.getItem("score")
-document.body.onload = function() {
-  score = Number(storage)
-  scoreDisplay.innerText = score 
+  const cost = document.createElement("p")
+  cost.innerText = "Cost : " + shop[i].cost + " ram"
+  div.appendChild(cost)
+  
+  ramPerSecond += shop[i].ramPS
+  
+  shopLocation.appendChild(div)
+  i++
 }
+
+const upgradeButton = document.querySelector(".upgradeButton")[0]
