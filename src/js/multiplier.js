@@ -6,8 +6,8 @@ import {
 } from "./domElements";
 
 export const multiplier = (score, pointsPerClick, scoreDisplay) => {
-  if (score >= 300) {
-    score -= 300;
+  if (score >= 100) {
+    score -= 100;
     pointsPerClick = 10;
     scoreDisplay.innerText = score;
     upgradesDiv.removeChild(multiplierX10Div);
