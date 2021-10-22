@@ -1,27 +1,23 @@
-import { 
-  upgradesDiv,
-  multiplierX2Div,
-  multiplierX5Div,
-  multiplierX10Div
-} from "./domElements"
-
-export const multiplier = (score, pointsPerClick, scoreDisplay) => {
-  if (score >= 300) {
-    score -= 300;
-    pointsPerClick = 10;
-    scoreDisplay.innerText = score;
-    upgradesDiv.removeChild(multiplierX10Div);
-  } else if (score >= 50) {
-    score -= 50;
-    pointsPerClick = 5;
-    scoreDisplay.innerText = score;
-    upgradesDiv.removeChild(multiplierX5Div);
-  } else if (score >= 20) {
-    score -= 20;
+export const multiplierX2 = (score, pointsPerClick,scoreDisplay) => {
+    score-=20
     pointsPerClick = 2;
     scoreDisplay.innerText = score;
-    upgradesDiv.removeChild(multiplierX2Div);
-  }
 
   return [score, pointsPerClick];
+}
+
+export const multiplierX5 = (score, pointsPerClick, scoreDisplay) => {
+  score-=50
+  pointsPerClick = 5;
+  scoreDisplay.innerText = score;
+
+return [score, pointsPerClick];
+}
+
+export const multiplierX10 = (score, pointsPerClick, scoreDisplay) => {
+  score-=300
+  pointsPerClick = 10;
+  scoreDisplay.innerText = score;
+
+return [score, pointsPerClick];
 }

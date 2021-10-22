@@ -1,5 +1,5 @@
 import { increaseScore } from "./increaseScore";
-import { multiplier } from "./multiplier";
+import { multiplierX2, multiplierX5, multiplierX10 } from "./multiplier";
 import { autoClicker } from "./autoClicker";
 import { boost } from "./boost";
 import { activateBonus } from "./activateBonus";
@@ -22,17 +22,9 @@ VARIABLES
 ----------------
 */
 let score = 0;
-if (scoreDisplay.textContent >= 1) {
-  score = score + scoreDisplay.textContent
-  console.log(score);
-  return score
-}
-else {
-  score = 0;
-
-}
 let timer = 0;
 let pointsPerClick = 1;
+
 const BOOST_BONUS_DURATION = 30;
 
 /*
@@ -50,8 +42,9 @@ EVENT LISTENERS
 // Mulitplier
   // x2
   multiplierX2Btn.addEventListener("click", () => {
-    notification.textContent = 'Your score is now inscreade by 2 !'
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+    notification.classList.add('show')
+    notification.textContent = 'Your score is now increased by 2 !'
+    let multiplierArray = multiplierX2(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
     
@@ -60,17 +53,18 @@ EVENT LISTENERS
   // x5
   multiplierX5Btn.addEventListener("click", () => {
     notification.textContent = ''
-    notification.textContent = 'Your score is now inscreade by 5!'  
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+    notification.textContent = 'Your score is now increased by 5!'  
+    let multiplierArray = multiplierX5(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
+    console.log(score)
   });
 
   // x10
   multiplierX10Btn.addEventListener("click", () => {
     notification.textContent = ''
-    notification.textContent = 'Your score is now inscreade by 10!' 
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+    notification.textContent = 'Your score is now increased by 10!' 
+    let multiplierArray = multiplierX10(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
   });
@@ -149,4 +143,5 @@ let storage = window.localStorage.getItem("score")
 document.body.onload = function() {
   score = Number(storage)
   scoreDisplay.innerText = score 
+  activateBonus()
 }
