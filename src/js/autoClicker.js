@@ -1,4 +1,4 @@
-export const autoClicker =(score, scoreDisplay) => {
+export const autoClicker = (score, scoreDisplay) => {
     score++
     scoreDisplay.textContent = score;
 
