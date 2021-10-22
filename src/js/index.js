@@ -1,5 +1,5 @@
 import { increaseScore } from "./increaseScore";
-import { multiplier } from "./multiplier";
+import { multiplierX2, multiplierX5, multiplierX10 } from "./multiplier";
 import { autoClicker } from "./autoClicker";
 import { boost } from "./boost";
 import { activateBonus } from "./activateBonus";
@@ -22,17 +22,9 @@ VARIABLES
 ----------------
 */
 let score = 0;
-if (scoreDisplay.textContent >= 1) {
-  score = score + scoreDisplay.textContent
-  console.log(score);
-  return score
-}
-else {
-  score = 0;
-
-}
 let timer = 0;
 let pointsPerClick = 1;
+
 const BOOST_BONUS_DURATION = 30;
 
 /*
@@ -50,8 +42,12 @@ EVENT LISTENERS
 // Mulitplier
   // x2
   multiplierX2Btn.addEventListener("click", () => {
-    notification.textContent = 'Your score is now inscreade by 2 !'
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+    notification.classList.add('show')
+    notification.textContent = 'Your score is now increased by 2 !'
+    setTimeout(() => {
+      notification.classList.remove('show')
+    },3000)
+    let multiplierArray = multiplierX2(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
     
@@ -59,26 +55,39 @@ EVENT LISTENERS
 
   // x5
   multiplierX5Btn.addEventListener("click", () => {
+    notification.classList.add('show')
     notification.textContent = ''
-    notification.textContent = 'Your score is now inscreade by 5!'  
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+    notification.textContent = 'Your score is now increased by 5!'  
+    setTimeout(() => {
+      notification.classList.remove('show')
+    },3000)
+    let multiplierArray = multiplierX5(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
+    console.log(score)
   });
 
   // x10
   multiplierX10Btn.addEventListener("click", () => {
+    notification.classList.add('show')
     notification.textContent = ''
-    notification.textContent = 'Your score is now inscreade by 10!' 
-    let multiplierArray = multiplier(score, pointsPerClick, scoreDisplay);
+    notification.textContent = 'Your score is now increased by 10!' 
+    setTimeout(() => {
+      notification.classList.remove('show')
+    },3000)
+    let multiplierArray = multiplierX10(score, pointsPerClick, scoreDisplay);
     score = multiplierArray[0];
     pointsPerClick = multiplierArray[1];
   });
 
 // Autoclicker
   autoClickerBtn.addEventListener("click", () => {
+    notification.classList.add('show')
     notification.textContent = ''
     notification.textContent = 'Auto Clicker ON ! Relieves your wrist!'
+    setTimeout(() => {
+      notification.classList.remove('show')
+    },2000)
     if (score >= 200) {
       score-=200  
       scoreDisplay.textContent = score
@@ -91,8 +100,12 @@ EVENT LISTENERS
 
 // Autoclicker Overkill
 autoClickerOverkillBtn.addEventListener("click", () => {
+    notification.classList.add('show')
     notification.textContent = ''
     notification.textContent = 'AC Overkill activated! It\'s rrrraining ram, hallelujah'
+    setTimeout(() => {
+      notification.classList.remove('show')
+    },2000)
   if (score >= 500) {
     let OverkillTimer = 0
     score-=500 
@@ -111,8 +124,12 @@ autoClickerOverkillBtn.addEventListener("click", () => {
 
 // Boost
   boostBtn.addEventListener("click", () => {
+    notification.classList.add('show')
     notification.textContent = ''
     notification.textContent = 'Boost activated! Score status : on steroid'
+    setTimeout(() => {
+      notification.classList.remove('show')
+    },2000)
 
     if (score >= 1000) {
       pointsPerClick =  boost(pointsPerClick)
@@ -149,4 +166,5 @@ let storage = window.localStorage.getItem("score")
 document.body.onload = function() {
   score = Number(storage)
   scoreDisplay.innerText = score 
+  activateBonus()
 }
