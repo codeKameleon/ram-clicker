@@ -3,99 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <title>Transmission</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    /* ===== RESET MINIMAL ===== */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #0b0c10;
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f2027, #000);
       color: #66fcf1;
       font-family: monospace;
-      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 60px;
     }
 
-    button {
-      width: 50px;
-      height: 50px;
-      background: red;
-      background: #111;
+    /* ===== BUTTON ===== */
+    #mediaBtn {
+      width: 260px;
+      height: 56px;
+      background: #0b0c10;
+      border: 2px solid #66fcf1;
       color: #66fcf1;
-      border: 1px solid #66fcf1;
-      padding: 12px 20px;
       font-size: 14px;
+      letter-spacing: 2px;
       cursor: pointer;
-      letter-spacing: 1px;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
     }
 
-    button:hover {
+    #mediaBtn:hover {
       background: #66fcf1;
       color: #0b0c10;
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.6);
     }
 
+    /* ===== MEDIA BOX ===== */
     #mediaBox {
-      margin-top: 16px;
-      animation: fadeIn 0.25s ease;
+      margin-top: 24px;
+      padding: 12px;
+      border: 2px solid #66fcf1;
+      box-shadow: 0 0 30px rgba(102, 252, 241, 0.4);
+      animation: fadeIn 0.3s ease;
     }
 
     iframe {
-      border: 2px solid #66fcf1;
-      box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+      display: block;
+      border: none;
     }
 
+    /* ===== ANIMATION ===== */
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: scale(0.96);
+        transform: scale(0.95);
       }
       to {
         opacity: 1;
         transform: scale(1);
       }
     }
+
+    /* ===== FOOTER TEXT ===== */
+    .hint {
+      margin-top: 40px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
   </style>
 </head>
 
 <body>
 
-  <button id="mediaBtn">▶️ BALANC LE SOUASS </button>
+  <button id="mediaBtn">▶️ OPEN TRANSMISSION</button>
 
   <div id="mediaBox" hidden>
     <iframe
       id="ytFrame"
-      width="720"
-      height="1280"
-      src="https://youtu.be/FPvpsc3vUME?si=8pOX7NVsArZDxELt"
-      frameborder="0"
+      width="640"
+      height="360"
+      src=""
       allow="autoplay; encrypted-media"
       allowfullscreen
     ></iframe>
   </div>
 
-  <audio id="audio" src="click.mp3" preload="auto"></audio>
-
-  <script>
-    const btn = document.getElementById("mediaBtn");
-    const box = document.getElementById("mediaBox");
-    const audio = document.getElementById("audio");
-    const iframe = document.getElementById("ytFrame");
-
-    const YT_URL = "https://www.youtube.com/embed/VIDEO_ID";
-
-    btn.addEventListener("click", () => {
-      audio.currentTime = 0;
-      audio.play();
-
-      const isOpen = !box.hasAttribute("hidden");
-
-      if (!isOpen) {
-        iframe.src = YT_URL + "?autoplay=1&rel=0";
-        box.removeAttribute("hidden");
-        btn.textContent = "⏹️ CLOSE TRANSMISSION";
-      } else {
-        iframe.src = "";
-        box.setAttribute("hidden", true);
-        btn.textContent = "▶️ OPEN TRANSMISSION";
-      }
-    });
-  </script>
-
-</body>
-</html>
+  <!-- son au clic -->
+  <audio id="audio" preload="auto">
+    <
