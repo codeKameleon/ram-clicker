@@ -1,74 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ram clicker game">
-    <link rel="stylesheet" href="style.scss">
-    <link rel="icon" href="images/ram.png">
-    <title>Ram Clicker</title>
+  <meta charset="UTF-8" />
+  <title>Transmission</title>
+
+  <style>
+    body {
+      background: #0b0c10;
+      color: #66fcf1;
+      font-family: monospace;
+      padding: 40px;
+    }
+
+    button {
+      background: #111;
+      color: #66fcf1;
+      border: 1px solid #66fcf1;
+      padding: 12px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      background: #66fcf1;
+      color: #0b0c10;
+    }
+
+    #mediaBox {
+      margin-top: 16px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    iframe {
+      border: 2px solid #66fcf1;
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <main class="game">
-        <section class="actions">
-            <div class="notification"></div>
-            <h1 class="title">Gb of ram</h1>
-            <div class="score-display">
-                0
-            </div>
-            <div id="ramClick" class="ram-click">
-                <img src="images/ram.png" alt="ram">
-            </div>
-        </section>
 
-        <section class="store">
-            <h1 class="title">Store</h1>
+  <button id="mediaBtn">▶️ OPEN TRANSMISSION</button>
 
-            <h2 class=subtitle>Upgrades</h2>
-            <span>Buy</span>
+  <div id="mediaBox" hidden>
+    <iframe
+      id="ytFrame"
+      width="480"
+      height="270"
+      src=""
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
 
-            <div class="upgrades">
-                <div class="upgrade upgrade multiplierX2-upgrade">
-                    <button disabled class="upgrade-btn upgrade-inactive" id="x2">x2</button>
-                    <p class="upgrade-description">Multiply your points per click by 2</p>
-                    <p class="upgrade-cost">Cost : 20 ram</p>
-                </div>
+  <audio id="audio" src="click.mp3" preload="auto"></audio>
 
-                <div class="upgrade multiplierX5-upgrade">
-                    <button disabled class="upgrade-btn upgrade-inactive" id="x5">x5</button>
-                    <p class="upgrade-description">Multiply your points per click by 5</p>
-                    <p class="upgrade-cost">Cost : 50 ram</p>
-                </div>
+  <script>
+    const btn = document.getElementById("mediaBtn");
+    const box = document.getElementById("mediaBox");
+    const audio = document.getElementById("audio");
+    const iframe = document.getElementById("ytFrame");
 
-                <div class=" upgrade multiplierX10-upgrade">
-                    <button disabled class="upgrade-btn upgrade-inactive" id="x10">x10</button>
-                    <p class="upgrade-description">Multiply your points per click by 10</p>
-                    <p class="upgrade-cost">Cost : 300 ram</p>
-                </div>
+    const YT_URL = "https://www.youtube.com/embed/VIDEO_ID";
 
-                <div class="upgrade auto-clicker-upgrade">
-                    <button disabled class="upgrade-btn upgrade-inactive auto-clicker" id="auto-clicker">Auto clicker</button>
-                    <p class="upgrade-description">Auto clicker : 1 ram per second</p>
-                    <p class="upgrade-cost">Cost : 200 ram</p>
-                </div>
+    btn.addEventListener("click", () => {
+      audio.currentTime = 0;
+      audio.play();
 
-                <div class="upgrade auto-clicker-upgrade">
-                    <button disabled class="upgrade-btn upgrade-inactive auto-clicker" id="auto-clicker-overkill">Auto clicker overkill</button>
-                    <p class="upgrade-description">Auto clicker Overkill : click every 0.1 second for 30 second</p>
-                    <p>Cooldown : 5 min</p>
-                    <p class="upgrade-cost">Cost : 500 ram</p>
-                </div>
+      const isOpen = !box.hasAttribute("hidden");
 
-                <div class="upgrade boost-upgrade">
-                    <button disabled class="upgrade-btn upgrade-inactive boost" id="boost">Boost</button>
-                    <p class="upgrade-description">Increase your score per click by 200% for 30 second</p>
-                    <p>Cooldown : 10 min</p>
-                    <p class="upgrade-cost">Cost : 1000 ram</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    <script type="module" src="js/index.js"></script>
+      if (!isOpen) {
+        iframe.src = YT_URL + "?autoplay=1&rel=0";
+        box.removeAttribute("hidden");
+        btn.textContent = "⏹️ CLOSE TRANSMISSION";
+      } else {
+        iframe.src = "";
+        box.setAttribute("hidden", true);
+        btn.textContent = "▶️ OPEN TRANSMISSION";
+      }
+    });
+  </script>
+
 </body>
 </html>
